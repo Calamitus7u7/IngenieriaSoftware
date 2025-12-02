@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { font-size: 24px; color: #333; margin-bottom: 25px; text-transform: uppercase; }
+        input {
+            width: 100%; padding: 12px; margin-bottom: 10px; /* Reduje margen para agrupar mejor */
+            border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;
+            background-color: #f9f9f9; transition: border-color 0.3s;
+        }
+        input:focus { border-color: #007bff; outline: none; background-color: #fff; }
+        button {
+            width: 100%; padding: 12px; background-color: #28a745; color: white;
+            border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;
+            transition: background 0.3s; margin-top: 15px;
+        }
+        button:hover { background-color: #218838; }
+        .login-link { display: block; margin-top: 20px; color: #007bff; text-decoration: none; font-size: 14px; }
+
+        /* ---  ESTILOS PARA LA VALIDACIÓN DE CONTRASEÑA --- */
+        #lista-requisitos {
+            text-align: left; /* Centrar Lista*/
+            font-size: 13px;
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        .requisito { color: #999; margin-bottom: 2px; transition: color 0.3s; }
+        
+        /* Clases que usará JavaScript para pintar de verde/rojo */
+        .valido { color: #28a745; font-weight: bold; }
+        .invalido { color: #dc3545; } 
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Crear Cuenta</h1>
+        
+        <form onsubmit="RegistroUsuario(event)"> 
+            <input type="text" id="nombreUsuario" placeholder="Nombre(s)" required>
+            <input type="text" id="apellidoPaterno" placeholder="Primer apellido" required>
+            <input type="text" id="apellidoMaterno" placeholder="Segundo apellido" required>
+            <input type="email" id="emailUsuario" placeholder="Correo electrónico" required>
+            
+            <input type="password" id="contraseniaRegistro" placeholder="Contraseña" required>
+
+            <div id="lista-requisitos">
+                <div id="req-length" class="requisito">• Mínimo 8 caracteres</div>
+                <div id="req-uppercase" class="requisito">• Al menos una mayúscula</div>
+                <div id="req-lowercase" class="requisito">• Al menos una minúscula</div>
+                <div id="req-number" class="requisito">• Al menos un número</div>
+            </div>
+
+            <input type="password" id="contraseniaConfirmar" placeholder="Confirmar contraseña" required>
+
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <a href="/" class="login-link">¿Ya tienes cuenta? Inicia sesión aquí</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='validacion.js') }}"></script>
+
+</body>
+</html>
